@@ -26,6 +26,30 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# provides generators and loads haml html templating engine
+gem 'haml-rails'
+
+# generators and helpers for Bootstrap CSS framework
+gem 'twitter-bootstrap-rails'
+
+# beautiful forms with less code
+gem 'simple_form'
+
+# seed data into the database using best practices
+gem 'seed-fu'
+
+group :test do
+  # creates test subjects
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+
+  # creates sample data
+  gem 'faker', '~> 1.3.0'
+
+  # adds `should` syntax
+  gem 'shoulda-context'
+end
+
 group :development do
   gem 'guard-minitest'
 end
