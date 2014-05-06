@@ -1,0 +1,10 @@
+= form_for @broker do |f|
+  - if @broker.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@broker.errors.count, "error")} prohibited this broker from being saved:"
+      %ul
+        - @broker.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

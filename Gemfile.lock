@@ -133,7 +133,7 @@ GEM
     seed-fu (2.3.1)
       activerecord (>= 3.1, < 4.2)
       activesupport (>= 3.1, < 4.2)
-    shoulda-context (1.1.6)
+    shoulda-context (1.2.1)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -185,7 +185,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   seed-fu
-  shoulda-context
+  shoulda-context (= 1.2.1)
   simple_form
   spring
   sqlite3

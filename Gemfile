@@ -46,8 +46,8 @@ group :test do
   # creates sample data
   gem 'faker', '~> 1.3.0'
 
-  # adds `should` syntax
-  gem 'shoulda-context'
+  # adds `context`, `setup`, and `should` blocks
+  gem 'shoulda-context', '1.2.1'
 end
 
 group :development do
