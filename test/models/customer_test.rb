@@ -8,7 +8,15 @@ class CustomerTest < ActiveSupport::TestCase
       assert customer.invalid?
 
       customer.brokers << build(:broker)
-      assert customer.valid?
+      assert customer.valid?, customer.errors.full_messages
+    end
+
+    should "be #{Customer::BROKER_MAX_COUNT} at most" do
+      customer = build :customer, :with_max_brokers
+      assert customer.valid?, customer.errors.full_messages
+
+      customer.brokers << build(:broker)
+      assert customer.invalid?
     end
   end
 end
