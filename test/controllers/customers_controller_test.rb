@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
-  setup do
-    @customer = customers(:one)
-  end
-
   test "should get index" do
     get :index
     assert_response :success
@@ -17,33 +13,14 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should create customer" do
-    assert_difference('Customer.count') do
-      post :create, customer: {  }
+    assert_difference('Customer.count', +1) do
+      post :create, format: :json, customer: { broker_ids: [create(:broker).id] }
+      assert_response :success, response.body
     end
-
-    assert_redirected_to customer_path(assigns(:customer))
   end
 
   test "should show customer" do
-    get :show, id: @customer
+    get :show, id: create(:customer)
     assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @customer
-    assert_response :success
-  end
-
-  test "should update customer" do
-    patch :update, id: @customer, customer: {  }
-    assert_redirected_to customer_path(assigns(:customer))
-  end
-
-  test "should destroy customer" do
-    assert_difference('Customer.count', -1) do
-      delete :destroy, id: @customer
-    end
-
-    assert_redirected_to customers_path
   end
 end

@@ -7,7 +7,7 @@ class Customer < ActiveRecord::Base
       has_and_belongs_to_many :brokers
 
       validates :brokers, presence: true,
-                          length: {maximum: BROKER_MAX_COUNT}
+                          length: {maximum: BROKER_MAX_COUNT, message: 'Too many brokers per customer selected'}
     end
   end
 end

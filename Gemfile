@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
@@ -48,9 +48,16 @@ group :test do
 
   # adds `context`, `setup`, and `should` blocks
   gem 'shoulda-context', '1.2.1'
+
+  # real user interaction simulation in the browser
+  gem 'capybara'
+
+  # headless webkit driver for capybara
+  gem 'poltergeist'
 end
 
 group :development do
+  # autoruns tests
   gem 'guard-minitest'
 end
 
@@ -64,5 +71,5 @@ end
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 

@@ -18,5 +18,13 @@ class CustomerTest < ActiveSupport::TestCase
       customer.brokers << build(:broker)
       assert customer.invalid?
     end
+
+    should 'be associated via :update_attributes' do
+      customer = build :customer, :without_brokers
+      assert_difference 'customer.brokers.count', +1 do
+        updated = customer.update_attributes broker_ids: [create(:broker).id]
+        assert updated, customer.errors.full_messages
+      end
+    end
   end
 end

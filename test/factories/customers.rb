@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :customer do
+    brokers { create_list(:broker, 1) }
   end
 
   trait :with_max_brokers do
