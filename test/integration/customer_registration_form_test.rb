@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CustomerRegistrationFormTest < ActionDispatch::IntegrationTest
   setup do
+    create :broker
     visit new_customer_path
   end
 

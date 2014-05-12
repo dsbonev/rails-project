@@ -11,9 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506194814) do
+ActiveRecord::Schema.define(version: 20140511172833) do
 
   create_table "brokers", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,9 +26,27 @@ ActiveRecord::Schema.define(version: 20140506194814) do
 
   add_index "brokers_customers", ["customer_id", "broker_id"], name: "index_brokers_customers_on_customer_id_and_broker_id"
 
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "number"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "customers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "supporting_documents", force: true do |t|
+    t.string   "file"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "supporting_documents", ["company_id"], name: "index_supporting_documents_on_company_id"
 
 end

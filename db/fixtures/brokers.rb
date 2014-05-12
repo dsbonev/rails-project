@@ -1,9 +1,3 @@
-# TODO add constraint
-Broker.seed :id, [
-  {id: 1},
-  {id: 2},
-  {id: 3},
-  {id: 4},
-  {id: 5},
-  {id: 6}
-]
+require 'faker'
+
+Broker.seed :id, 1.upto(6).map { |n| {id: n, name: Faker::Name.name} }

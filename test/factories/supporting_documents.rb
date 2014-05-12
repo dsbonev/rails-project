@@ -1,7 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :broker do
-    name { Faker::Name.name }
+  factory :supporting_document do
   end
 end
