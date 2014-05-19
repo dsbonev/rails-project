@@ -6,6 +6,7 @@ $(document).ready ->
     e.preventDefault();
     e.stopPropagation();
 
+  # Step 1
   brokerCountMessageEl = $('<div class="alert alert-danger">Select between 1 and 3 brokers</div>').prependTo($('.customer_brokers'))
   $('.customer_brokers').on 'change', 'input[type=checkbox]', ->
     if (valid = 0 < $('.customer_brokers input:checked').length < 4)
@@ -19,6 +20,15 @@ $(document).ready ->
     if (valid = 0 < $('.customer_brokers input:checked').length < 4)
       $('.form_tabs li:eq(1) a').tab 'show'
       $('.progress-bar-success').css(width: '33%')
+
+
+  # Step 2
+  $('#company-type-selection').on 'change', (e) ->
+    companyDetailsContainer = $ '#company-details-fields'
+    companyDetailsContainer.empty()
+
+    if (selected = e.target.value)
+      companyDetailsContainer.load "/customers/partial/#{selected}"
 
   $('#company_type .next_step').on 'click', (e) ->
     $('.form_tabs li:eq(2) a').tab 'show'

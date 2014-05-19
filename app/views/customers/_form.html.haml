@@ -14,7 +14,11 @@
       = f.association :brokers, as: :check_boxes
       .next_step.btn.btn-primary Next
     .tab-pane.fade#company_type
-      Company type
+      %select.form-control#company-type-selection
+        %option
+        %option Charity
+        %option LimitedCompany
+      #company-details-fields
       .next_step.btn.btn-primary Next
     .tab-pane.fade#supporting_document
       Supporting document
