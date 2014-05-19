@@ -1,7 +1,10 @@
 - model_class = Customer
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.titleize
-
+- if flash[:just_created]
+  .jumbotron
+    %h2 You have registered successfully!
+    %p Go on, transfer some money and save on fees!
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), customers_path, :class => 'btn'
