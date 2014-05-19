@@ -6,8 +6,16 @@ $(document).ready ->
     e.preventDefault();
     e.stopPropagation();
 
+  errorMessageEl = $('<div class="alert alert-info">Select between 1 and 3 brokers</div>').appendTo($('.customer_brokers'))
+  $('.customer_brokers').on 'change', 'input[type=checkbox]', ->
+    if (valid = 0 < $('.customer_brokers input:checked').length < 4)
+      errorMessageEl.hide()
+    else
+      errorMessageEl.show()
+
   $('#broker_selection .next_step').on 'click', (e) ->
-    $('.form_tabs li:eq(1) a').tab 'show'
+    if (valid = 0 < $('.customer_brokers input:checked').length < 4)
+      $('.form_tabs li:eq(1) a').tab 'show'
 
   $('#company_type .next_step').on 'click', (e) ->
     $('.form_tabs li:eq(2) a').tab 'show'
