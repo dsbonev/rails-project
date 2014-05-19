@@ -6,12 +6,14 @@ $(document).ready ->
     e.preventDefault();
     e.stopPropagation();
 
-  errorMessageEl = $('<div class="alert alert-info">Select between 1 and 3 brokers</div>').appendTo($('.customer_brokers'))
+  brokerCountMessageEl = $('<div class="alert alert-danger">Select between 1 and 3 brokers</div>').prependTo($('.customer_brokers'))
   $('.customer_brokers').on 'change', 'input[type=checkbox]', ->
     if (valid = 0 < $('.customer_brokers input:checked').length < 4)
-      errorMessageEl.hide()
+      brokerCountMessageEl.removeClass 'alert-danger'
+                          .addClass 'alert-success'
     else
-      errorMessageEl.show()
+      brokerCountMessageEl.removeClass 'alert-success'
+                          .addClass 'alert-danger'
 
   $('#broker_selection .next_step').on 'click', (e) ->
     if (valid = 0 < $('.customer_brokers input:checked').length < 4)
