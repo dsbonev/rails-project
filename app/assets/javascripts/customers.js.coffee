@@ -16,6 +16,8 @@ $(document).ready ->
   $('#broker_selection .next_step').on 'click', (e) ->
     if (valid = 0 < $('.customer_brokers input:checked').length < 4)
       $('.form_tabs li:eq(1) a').tab 'show'
+      $('.progress-bar-success').css(width: '33%')
 
   $('#company_type .next_step').on 'click', (e) ->
     $('.form_tabs li:eq(2) a').tab 'show'
+    $('.progress-bar-success').css(width: '67%')
