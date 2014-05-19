@@ -1,1 +1,18 @@
-Charity
+= form_for Customer.new do |c|
+  = fields_for Charity.new do |ch|
+    .form-group
+      = ch.label :name, 'Full Name *'
+      .help-block
+      = ch.text_field :name, required: ''
+    .form-group
+      = ch.label :address
+      .help-block
+      = ch.text_field :address
+    .form-group
+      = ch.label :number, 'Charity Number'
+      .help-block
+      = ch.text_field :number
+    .form-group
+      = ch.label :email, 'Email Address'
+      .help-block
+      = ch.email_field :email

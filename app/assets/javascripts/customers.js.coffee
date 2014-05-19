@@ -31,5 +31,15 @@ $(document).ready ->
       companyDetailsContainer.load "/customers/partial/#{selected}"
 
   $('#company_type .next_step').on 'click', (e) ->
-    $('.form_tabs li:eq(2) a').tab 'show'
-    $('.progress-bar-success').css(width: '67%')
+    invalid = $('#company-details-fields input').filter (index) ->
+      !this.checkValidity()
+
+    if invalid.length == 0
+      $('.form_tabs li:eq(2) a').tab 'show'
+      $('.progress-bar-success').css(width: '67%')
+    else
+      invalid.each ->
+        $(this).parent('.form-group')
+          .addClass('has-error')
+          .find('.help-block')
+            .text(this.validationMessage)
