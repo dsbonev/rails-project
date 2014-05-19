@@ -59,6 +59,9 @@ end
 group :development do
   # autoruns tests
   gem 'guard-minitest'
+
+  # Rails logs structured in tabs and viewable in Chrome
+  gem 'meta_request'
 end
 
 # Use ActiveModel has_secure_password
