@@ -3,4 +3,5 @@ class Company < ActiveRecord::Base
   has_one :supporting_document
 
   validates :name, presence: true
+  accepts_nested_attributes_for :supporting_document
 end
