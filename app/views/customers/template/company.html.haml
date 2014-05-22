@@ -1,0 +1,15 @@
+- type = params[:type]
+= form_for Customer.new do |c|
+  = fields_for type.constantize.new do |f|
+    :ruby
+      fields = {
+        name: {options: {required: ''}},
+        address: {},
+        number: {},
+        email: {label: 'Email Address', type: :email_field}
+      }
+
+    = render "customers/template/#{type.underscore}", {f: f, fields: fields}
+
+    - fields.each do |field, config|
+      = render 'company_form_field', {f: f, field: field, config: config}
