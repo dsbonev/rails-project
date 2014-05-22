@@ -28,7 +28,7 @@ $(document).ready ->
     companyDetailsContainer.empty()
 
     if (selected = e.target.value)
-      companyDetailsContainer.load "/customers/partial/#{selected}"
+      companyDetailsContainer.load "/customers/template/#{selected}"
 
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->

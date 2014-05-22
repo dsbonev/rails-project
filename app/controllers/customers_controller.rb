@@ -35,8 +35,8 @@ class CustomersController < ApplicationController
     end
   end
 
-  def partial
-    render "customers/partial/#{params[:name].underscore}", layout: false
+  def template
+    render "customers/template/#{params[:name].underscore}", layout: false
   end
 
   private

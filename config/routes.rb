@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :customers do
     collection do
-      get 'partial/:name', to: 'customers#partial'
+      get 'template/:name', to: 'customers#template'
     end
   end
 

@@ -1,5 +1,6 @@
 = form_for Customer.new do |c|
   = fields_for Charity.new do |ch|
+    = render "company_form_field", {field: :name, label: 'Full Name *', options: { required: ''}}
     .form-group
       = ch.label :name, 'Full Name *'
       .help-block
