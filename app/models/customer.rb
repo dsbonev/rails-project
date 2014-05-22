@@ -10,4 +10,14 @@ class Customer < ActiveRecord::Base
                           length: {maximum: BROKER_MAX_COUNT, message: 'Too many brokers per customer selected'}
     end
   end
+
+  concerning :CompanyAssociation do
+    included do
+      has_one :company
+
+      validates :company, presence: true
+
+      accepts_nested_attributes_for :company
+    end
+  end
 end

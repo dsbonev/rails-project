@@ -1,6 +1,6 @@
 - type = params[:type]
 = form_for Customer.new do |c|
-  = fields_for type.constantize.new do |f|
+  = c.fields_for :company, type.constantize.new do |f|
     :ruby
       fields = {
         name: {options: {required: ''}},
