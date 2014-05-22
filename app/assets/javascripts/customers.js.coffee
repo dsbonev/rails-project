@@ -25,10 +25,21 @@ $(document).ready ->
   # Step 2
   $('#company-type-selection').on 'change', (e) ->
     companyDetailsContainer = $ '#company-details-fields'
-    companyDetailsContainer.empty()
+    spinner = new Spinner
+      color:'#fff'
+      left: '20%'
 
     if (selected = e.target.value)
-      companyDetailsContainer.load "/customers/template/company", "type=#{selected}"
+      $.ajax
+        url: "/customers/template/company"
+        data:
+          type: selected
+      .done (data)->
+        companyDetailsContainer.empty().html data
+      .always ->
+        spinner.stop()
+
+      spinner.spin(companyDetailsContainer.get(0))
 
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->

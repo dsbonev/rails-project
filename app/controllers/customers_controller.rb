@@ -36,6 +36,7 @@ class CustomersController < ApplicationController
   end
 
   def template
+    sleep 1
     render "customers/template/#{params[:name].underscore}", layout: false
   end
 

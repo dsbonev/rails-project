@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require bootstrap
+//= require spin.min
 //= require_tree .
