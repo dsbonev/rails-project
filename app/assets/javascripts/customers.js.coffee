@@ -23,11 +23,18 @@ $(document).ready ->
 
 
   # Step 2
+  company_data = {}
   $('#company-type-selection').on 'change', (e) ->
     companyDetailsContainer = $ '#company-details-fields'
     spinner = new Spinner
       color:'#fff'
       left: '20%'
+
+    company_data = companyDetailsContainer.find('input').serializeArray()
+                                                        .reduce ((company_data, field)->
+                                                          company_data[field.name] = field.value
+                                                          company_data
+                                                        ), company_data
 
     if (selected = e.target.value)
       $.ajax
@@ -36,6 +43,8 @@ $(document).ready ->
           type: selected
       .done (data)->
         companyDetailsContainer.empty().html data
+        $.each company_data, (name, value)->
+          companyDetailsContainer.find("input").filter(-> this.name == name ).val(value)
       .always ->
         spinner.stop()
 
