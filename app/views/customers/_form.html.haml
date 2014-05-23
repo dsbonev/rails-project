@@ -28,9 +28,6 @@
       #company-details-fields
       .next_step.btn.btn-primary Next
     .tab-pane.fade#supporting_document
-      = f.fields_for :company, Company.new do |c|
-        = c.fields_for :supporting_document, SupportingDocument.new do |sd|
-          #supporting-document-fields
-          = sd.file_field :file
+      #supporting-document-fields
 
       = f.button :submit, :class => 'btn-primary'

@@ -55,6 +55,7 @@ $(document).ready ->
       !this.checkValidity()
 
     if invalid.length == 0
+      loadUploadFileTemplate $('#company-type-selection').val()
       $('.form_tabs li:eq(2) a').tab 'show'
       $('.progress-bar-success').css(width: '67%')
     else
@@ -63,3 +64,7 @@ $(document).ready ->
           .addClass('has-error')
           .find('.help-block')
             .text(this.validationMessage)
+
+  # Step 3
+  loadUploadFileTemplate = (companyType)->
+    $('#supporting-document-fields').load '/customers/template/supporting_document', "type=#{companyType}"

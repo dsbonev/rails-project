@@ -1,0 +1,18 @@
+- type = params[:type]
+= form_for Customer.new do |f|
+  = f.fields_for :company, Company.new do |c|
+    = c.fields_for :supporting_document, SupportingDocument.new do |sd|
+      :ruby
+        fields = {
+          file: {options: {}},
+        }
+
+        if type == 'LimitedCompany'
+          fields[:file].tap do |file_config|
+            file_config[:label] = 'Proof of Address *'
+            file_config[:options][:required] = ''
+          end
+        end
+
+      = sd.label :file, fields[:file][:label]
+      = sd.file_field :file, fields[:file][:options]
