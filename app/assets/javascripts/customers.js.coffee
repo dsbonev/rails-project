@@ -45,6 +45,7 @@ $(document).ready ->
         companyDetailsContainer.empty().html data
         $.each company_data, (name, value)->
           companyDetailsContainer.find("input").filter(-> this.name == name ).val(value)
+      .fail -> companyDetailsContainer.empty().html '<div class="alert alert-danger">Request error</div>'
       .always ->
         spinner.stop()
 
@@ -53,6 +54,10 @@ $(document).ready ->
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->
       !this.checkValidity()
+
+    #clear errors
+    $('#company-details-fields .has-error .help-block').empty()
+    $('#company-details-fields .has-error').removeClass 'has-error'
 
     if invalid.length == 0
       loadUploadFileTemplate $('#company-type-selection').val()
