@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require bootstrap
 //= require spin.min
+//= require handlebars
 //= require_tree .

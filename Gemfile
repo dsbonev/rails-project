@@ -41,6 +41,9 @@ gem 'seed-fu'
 # file attachment to model
 gem 'paperclip', '~> 4.1.1'
 
+# client-side templates
+gem 'handlebars_assets'
+
 group :test do
   # creates test subjects
   gem 'factory_girl'

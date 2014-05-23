@@ -1,5 +1,5 @@
 class SupportingDocument < ActiveRecord::Base
-  belongs_to :company
+  belongs_to :company, foreign_key: 'company_id'
   validates :file, presence: true
 
   has_attached_file :file

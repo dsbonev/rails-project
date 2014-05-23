@@ -1,0 +1,15 @@
+%fieldset#directors
+  %legend Directors (up to 4)
+
+  = f.fields_for :directors, [Director.new] do |d|
+    = render 'company_form_field', {f: d, field: :name, config: {label: 'Name *', options: {required: ''}}}
+
+  %button.btn.btn-success#add-director{type: :button, data: {max: 4}}
+    %i.icon-white.icon-plus-sign
+    Add
+
+%script{type: 'template', id: :director_template}
+  .form-group
+    %label{for: "customer_company_attributes_directors_attributes_{{index}}_name"} Name *
+    .help-block
+    %input{id: "customer_company_attributes_directors_attributes_{{index}}_name", name: "customer[company_attributes][directors_attributes][{{index}}][name]", required: "", type: "text"}

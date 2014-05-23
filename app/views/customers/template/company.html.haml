@@ -1,6 +1,8 @@
 - type = params[:type]
-= form_for Customer.new do |c|
+= fields_for Customer.new do |c|
   = c.fields_for :company, type.constantize.new do |f|
+    = f.hidden_field :type, value: type
+
     :ruby
       fields = {
         name: {options: {required: ''}},
@@ -12,4 +14,5 @@
     = render "customers/template/#{type.underscore}", {f: f, fields: fields}
 
     - fields.each do |field, config|
-      = render 'company_form_field', {f: f, field: field, config: config}
+      - partial = config.kind_of?(String) ? config : 'company_form_field'
+      = render partial, {f: f, field: field, config: config}
