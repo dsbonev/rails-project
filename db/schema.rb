@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523110536) do
+ActiveRecord::Schema.define(version: 20140523123952) do
 
   create_table "associates", force: true do |t|
     t.text     "name"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   add_index "associates", ["company_id"], name: "index_associates_on_company_id"

@@ -1,0 +1,12 @@
+%fieldset#trustees
+  %legend Trustees
+
+  %button.btn.btn-success.btn-add-more{type: :button, data: {template: :trustee_template}}
+    %i.icon-white.icon-plus-sign
+    Add More
+
+%script{type: 'template', id: :trustee_template}
+  .form-group
+    %label{for: "customer_company_attributes_trustees_attributes_{{index}}_name"} Name *
+    .help-block
+    %input{id: "customer_company_attributes_trustees_attributes_{{index}}_name", name: "customer[company_attributes][trustees_attributes][{{index}}][name]", required: "", type: "text"}

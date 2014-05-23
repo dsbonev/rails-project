@@ -52,6 +52,7 @@ class CustomersController < ApplicationController
                             .push(supporting_document_attributes: [:file])
                             .push(directors_attributes: [:name])
                             .push(partners_attributes: [:name])
+                            .push(trustees_attributes: [:name])
       params.require(:customer).permit(broker_ids: [], company_attributes: company_attributes)
     end
 end

@@ -73,6 +73,10 @@ $(document).ready ->
     $(this).before evaluateTemplate($('#partner_template'), index: count)
     preventMoreIfMaximum $(this), count + 1
 
+  # add more trustees
+  $('#company-details-fields').on 'click', '#add-trustee', ->
+    count = $('#partners .form-group').size()
+    $(this).before evaluateTemplate($('#trustee_template'), index: count)
 
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->
