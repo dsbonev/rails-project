@@ -32,7 +32,7 @@ $(document).ready ->
 
     cached_company_data = companyDetailsContainer.find('input').serializeArray()
                                                         .reduce ((company_data, field)->
-                                                          company_data[field.name] = field.value
+                                                          company_data[field.name] = field.value if field.name != 'customer[company_attributes][type]'
                                                           company_data
                                                         ), cached_company_data
 
@@ -43,6 +43,7 @@ $(document).ready ->
           type: selected
       .done (data)->
         companyDetailsContainer.empty().html data
+
         $.each cached_company_data, (name, value)->
           companyDetailsContainer.find("input").filter(-> this.name == name ).val(value)
       .fail -> companyDetailsContainer.empty().html '<div class="alert alert-danger">Request error</div>'
@@ -51,14 +52,27 @@ $(document).ready ->
 
       spinner.spin(companyDetailsContainer.get(0))
 
-  $('#company-details-fields').on 'click', '#add-director', ->
-    director_template = Handlebars.compile $('#director_template').html().trim()
-    count = $('#directors .form-group').size()
-    $('#add-director').before director_template(index: count)
+  evaluateTemplate = (template, data)->
+    t = Handlebars.compile template.html().trim()
+    t data
 
-    if count + 1 == $('#add-director').data 'max'
-      $('#add-director').addClass 'disabled'
-      $('#add-director').prop 'disabled', true
+  preventMoreIfMaximum = (button, count)->
+    if count == button.data 'max'
+      button.addClass 'disabled'
+            .prop 'disabled', true
+
+  # add more directors
+  $('#company-details-fields').on 'click', '#add-director', ->
+    count = $('#directors .form-group').size()
+    $(this).before evaluateTemplate($('#director_template'), index: count)
+    preventMoreIfMaximum $(this), count + 1
+
+  # add more partners
+  $('#company-details-fields').on 'click', '#add-partner', ->
+    count = $('#partners .form-group').size()
+    $(this).before evaluateTemplate($('#partner_template'), index: count)
+    preventMoreIfMaximum $(this), count + 1
+
 
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->

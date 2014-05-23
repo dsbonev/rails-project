@@ -51,6 +51,7 @@ class CustomersController < ApplicationController
       company_attributes = %i(name address number email type)
                             .push(supporting_document_attributes: [:file])
                             .push(directors_attributes: [:name])
+                            .push(partners_attributes: [:name])
       params.require(:customer).permit(broker_ids: [], company_attributes: company_attributes)
     end
 end

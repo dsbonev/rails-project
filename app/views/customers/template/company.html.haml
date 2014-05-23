@@ -1,8 +1,6 @@
 - type = params[:type]
 = fields_for Customer.new do |c|
   = c.fields_for :company, type.constantize.new do |f|
-    = f.hidden_field :type, value: type
-
     :ruby
       fields = {
         name: {options: {required: ''}},
@@ -10,6 +8,8 @@
         number: {},
         email: {label: 'Email Address', type: :email_field}
       }
+
+    = f.hidden_field :type, value: type
 
     = render "customers/template/#{type.underscore}", {f: f, fields: fields}
 
