@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
+  spinner = new Spinner
+      color:'#7f7f7f'
+      left: '20%'
+
+  # prevent user ability of going to next tab
   $('.form_tabs a').on 'click', (e) ->
     e.preventDefault();
     e.stopPropagation();
@@ -26,9 +31,6 @@ $(document).ready ->
   cached_company_data = {}
   $('#company-type-selection').on 'change', (e) ->
     companyDetailsContainer = $ '#company-details-fields'
-    spinner = new Spinner
-      color:'#fff'
-      left: '20%'
 
     cached_company_data = companyDetailsContainer.find('input').serializeArray()
                                                         .reduce ((company_data, field)->
@@ -92,3 +94,9 @@ $(document).ready ->
   # Step 3
   loadUploadFileTemplate = (companyType)->
     $('#supporting-document-fields').load '/customers/template/supporting_document', "type=#{companyType}"
+
+  $('#new_customer').on
+    'ajax:send': -> spinner.spin this
+    'ajax:success': -> alert 'ou yeah'
+    'ajax:error': -> #TODO switch to appropriate tab and focus field
+    'ajax:complete': -> spinner.stop()
