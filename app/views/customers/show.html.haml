@@ -5,8 +5,20 @@
   .jumbotron
     %h2 You have registered successfully!
     %p Go on, transfer some money and save on fees!
+%h2 Brokers
+%ul
+  - @customer.brokers.each do |broker|
+    %ul= broker.name
+
+%h2 Company
+%table.table.table-striped
+  %tr
+    %td Name
+    %td= @customer.company.name
+  - @customer.company.supporting_document.try(:file_file_name).try do |file_name|
+    %tr
+      %td File
+      %td= file_name
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), customers_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_customer_path(@customer), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), customer_path(@customer), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
