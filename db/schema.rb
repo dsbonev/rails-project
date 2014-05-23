@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523123952) do
+ActiveRecord::Schema.define(version: 20140523131138) do
 
   create_table "associates", force: true do |t|
     t.text     "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140523123952) do
     t.datetime "updated_at"
     t.integer  "customer_id"
     t.string   "type"
+    t.boolean  "listed_on_exchange"
   end
 
   add_index "companies", ["customer_id"], name: "index_companies_on_customer_id"

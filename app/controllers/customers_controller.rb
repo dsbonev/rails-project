@@ -48,7 +48,7 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      company_attributes = %i(name address number email type)
+      company_attributes = %i(name address number email type listed_on_exchange)
                             .push(supporting_document_attributes: [:file])
                             .push(directors_attributes: [:name])
                             .push(partners_attributes: [:name])
