@@ -4,7 +4,7 @@
   = f.fields_for :directors, [Director.new] do |d|
     = render 'company_form_field', {f: d, field: :name, config: {label: 'Name *', options: {required: ''}}}
 
-  %button.btn.btn-success#add-director{type: :button, data: {max: 4}}
+  %button.btn.btn-success.btn-add-more{type: :button, data: {max: 4, template: :director_template}}
     %i.icon-white.icon-plus-sign
     Add More
 

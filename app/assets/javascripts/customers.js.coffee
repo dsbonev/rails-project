@@ -61,22 +61,14 @@ $(document).ready ->
       button.addClass 'disabled'
             .prop 'disabled', true
 
-  # add more directors
-  $('#company-details-fields').on 'click', '#add-director', ->
-    count = $('#directors .form-group').size()
-    $(this).before evaluateTemplate($('#director_template'), index: count)
+  # add more
+  $('#company-details-fields').on 'click', ".btn-add-more", ->
+    count = $(this).parent('fieldset').find('input[type=text]').size()
+    template = "##{$(this).data('template')}"
+    $(evaluateTemplate($(template), index: count)).insertBefore $(this)
+                                                                .find('input')
+                                                                  .focus()
     preventMoreIfMaximum $(this), count + 1
-
-  # add more partners
-  $('#company-details-fields').on 'click', '#add-partner', ->
-    count = $('#partners .form-group').size()
-    $(this).before evaluateTemplate($('#partner_template'), index: count)
-    preventMoreIfMaximum $(this), count + 1
-
-  # add more trustees
-  $('#company-details-fields').on 'click', '#add-trustee', ->
-    count = $('#partners .form-group').size()
-    $(this).before evaluateTemplate($('#trustee_template'), index: count)
 
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->
