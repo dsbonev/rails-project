@@ -54,6 +54,15 @@ $(document).ready ->
 
       spinner.spin(companyDetailsContainer.get(0))
 
+  # add more
+  $('#company-details-fields').on 'click', ".btn-add-more", ->
+    count = $(this).parent('fieldset').find('input[type=text]').size()
+    template = "##{$(this).data('template')}"
+    $(evaluateTemplate($(template), index: count)).insertBefore $(this)
+                                                                .find('input')
+                                                                  .focus()
+    preventMoreIfMaximum $(this), count + 1
+
   evaluateTemplate = (template, data)->
     t = Handlebars.compile template.html().trim()
     t data
@@ -63,14 +72,8 @@ $(document).ready ->
       button.addClass 'disabled'
             .prop 'disabled', true
 
-  # add more
-  $('#company-details-fields').on 'click', ".btn-add-more", ->
-    count = $(this).parent('fieldset').find('input[type=text]').size()
-    template = "##{$(this).data('template')}"
-    $(evaluateTemplate($(template), index: count)).insertBefore $(this)
-                                                                .find('input')
-                                                                  .focus()
-    preventMoreIfMaximum $(this), count + 1
+  $('#company-details-fields').on 'click', ".btn-remove-item", ->
+    $(this).parent('.form-group').remove()
 
   $('#company_type .next_step').on 'click', (e) ->
     invalid = $('#company-details-fields input').filter (index) ->
@@ -94,9 +97,3 @@ $(document).ready ->
   # Step 3
   loadUploadFileTemplate = (companyType)->
     $('#supporting-document-fields').load '/customers/template/supporting_document', "type=#{companyType}"
-
-  $('#new_customer').on
-    'ajax:send': -> spinner.spin this
-    'ajax:success': -> alert 'ou yeah'
-    'ajax:error': -> #TODO switch to appropriate tab and focus field
-    'ajax:complete': -> spinner.stop()
