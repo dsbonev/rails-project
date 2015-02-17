@@ -24,6 +24,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
+        flash[:just_created] = true
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
@@ -34,6 +35,11 @@ class CustomersController < ApplicationController
     end
   end
 
+  def template
+    sleep 0.5
+    render "customers/template/#{params[:name].underscore}", layout: false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
@@ -42,6 +48,11 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(broker_ids: [])
+      company_attributes = %i(name address number email type listed_on_exchange)
+                            .push(supporting_document_attributes: [:file])
+                            .push(directors_attributes: [:name])
+                            .push(partners_attributes: [:name])
+                            .push(trustees_attributes: [:name])
+      params.require(:customer).permit(broker_ids: [], company_attributes: company_attributes)
     end
 end

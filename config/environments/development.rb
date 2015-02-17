@@ -35,3 +35,14 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+
+Paperclip.options[:command_path] = "/usr/bin/"
+
+# prevent content inspection http://stackoverflow.com/a/23630815
+module Paperclip
+  class MediaTypeSpoofDetector
+    def spoofed?
+      false
+    end
+  end
+end

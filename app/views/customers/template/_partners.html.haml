@@ -1,0 +1,14 @@
+%fieldset#partners
+  %legend Partners (up to 4)
+
+  %button.btn.btn-success.btn-add-more{type: :button, data: {max: 4, template: :partner_template}}
+    %i.icon-white.icon-plus-sign
+    Add More
+
+%script{type: 'template', id: :partner_template}
+  .form-group
+    %label{for: "customer_company_attributes_partners_attributes_{{index}}_name"} Name *
+    .help-block
+    %input{id: "customer_company_attributes_partners_attributes_{{index}}_name", name: "customer[company_attributes][partners_attributes][{{index}}][name]", required: "", type: "text"}
+    %button.btn.btn-danger.btn-remove-item{type: :button}
+      %i.icon-white.icon-remove

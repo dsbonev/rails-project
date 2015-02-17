@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511172833) do
+ActiveRecord::Schema.define(version: 20140523131138) do
+
+  create_table "associates", force: true do |t|
+    t.text     "name"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+  end
+
+  add_index "associates", ["company_id"], name: "index_associates_on_company_id"
 
   create_table "brokers", force: true do |t|
     t.string   "name"
@@ -33,7 +43,12 @@ ActiveRecord::Schema.define(version: 20140511172833) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
+    t.string   "type"
+    t.boolean  "listed_on_exchange"
   end
+
+  add_index "companies", ["customer_id"], name: "index_companies_on_customer_id"
 
   create_table "customers", force: true do |t|
     t.datetime "created_at"
@@ -45,6 +60,10 @@ ActiveRecord::Schema.define(version: 20140511172833) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   add_index "supporting_documents", ["company_id"], name: "index_supporting_documents_on_company_id"

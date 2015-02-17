@@ -67,3 +67,21 @@ div {
     list-style: square;
   }
 }
+
+.checkbox {
+  display: block;
+}
+
+.checkbox {
+  .checkboxes, label {
+    display: inline-block;
+  }
+}
+
+.btn-primary {
+  color: white !important;
+}
+
+.btn-danger {
+  color: white !important;
+}

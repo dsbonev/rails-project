@@ -38,6 +38,12 @@ gem 'simple_form'
 # seed data into the database using best practices
 gem 'seed-fu'
 
+# file attachment to model
+gem 'paperclip', '~> 4.1.1'
+
+# client-side templates
+gem 'handlebars_assets'
+
 group :test do
   # creates test subjects
   gem 'factory_girl'
@@ -59,6 +65,9 @@ end
 group :development do
   # autoruns tests
   gem 'guard-minitest'
+
+  # Rails logs structured in tabs and viewable in Chrome
+  gem 'meta_request'
 end
 
 # Use ActiveModel has_secure_password

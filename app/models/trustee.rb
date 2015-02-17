@@ -1,0 +1,2 @@
+class Trustee < Associate
+end
